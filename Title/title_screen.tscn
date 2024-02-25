@@ -1,18 +1,42 @@
-[gd_scene format=3 uid="uid://dfp2b0jcyhkrk"]
+[gd_scene load_steps=8 format=3 uid="uid://dfp2b0jcyhkrk"]
 
-[node name="MarginContainer" type="MarginContainer"]
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 120
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 120
-theme_override_constants/margin_bottom = 80
+[ext_resource type="Texture2D" uid="uid://j0b2wnxvgnj3" path="res://Assets/Sprites/logo_normal.png" id="1_bc2j4"]
+[ext_resource type="Script" path="res://Title/ParallaxBackground.gd" id="1_w4nm0"]
+[ext_resource type="Texture2D" uid="uid://c3mchruglalbw" path="res://bg_1_1.png" id="2_bpubx"]
+[ext_resource type="Texture2D" uid="uid://cvy7ouhfjur1u" path="res://Assets/Sprites/logo_hover.png" id="2_pwb5q"]
+[ext_resource type="Texture2D" uid="uid://b7ljkmiu84w55" path="res://Assets/Sprites/play_normal.png" id="3_gtfeu"]
+[ext_resource type="Texture2D" uid="uid://dsur6620fpcno" path="res://Assets/Sprites/play_hover.png" id="4_ajo1k"]
+[ext_resource type="Script" path="res://Title/Play.gd" id="5_1m2bq"]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
+[node name="Node2D" type="Node2D"]
 
-[node name="Logo" type="TextureRect" parent="VBoxContainer"]
-layout_mode = 2
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_w4nm0")
 
-[node name="Play" type="TextureRect" parent="VBoxContainer"]
-layout_mode = 2
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(800, 600)
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(337, 143)
+texture = ExtResource("2_bpubx")
+
+[node name="Logo" type="TextureButton" parent="."]
+offset_left = 102.0
+offset_top = 92.0
+offset_right = 534.0
+offset_bottom = 158.0
+texture_normal = ExtResource("1_bc2j4")
+texture_hover = ExtResource("2_pwb5q")
+
+[node name="Play" type="TextureButton" parent="."]
+offset_left = 269.0
+offset_top = 212.0
+offset_right = 419.0
+offset_bottom = 273.0
+scale = Vector2(0.5, 0.5)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_gtfeu")
+texture_hover = ExtResource("4_ajo1k")
+script = ExtResource("5_1m2bq")
+
+[connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
