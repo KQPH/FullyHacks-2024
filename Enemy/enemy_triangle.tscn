@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsbxf1h4vge4b"]
+[gd_scene load_steps=4 format=3 uid="uid://bsbxf1h4vge4b"]
 
-[ext_resource type="Script" path="res://Enemy/enemy_triangle.gd" id="1_04gsf"]
-[ext_resource type="Texture2D" uid="uid://surprtew2or1" path="res://Enemy/enemy_triangle.png" id="2_25n5p"]
+[ext_resource type="Script" path="res://Enemy/enemy_triangle.gd" id="1_tblky"]
+[ext_resource type="Texture2D" uid="uid://surprtew2or1" path="res://Enemy/enemy_triangle.png" id="2_bpap5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4g0my"]
+radius = 4.0
+height = 10.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_04gsf")
+script = ExtResource("1_tblky")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_25n5p")
+position = Vector2(2.38419e-07, -2)
+scale = Vector2(0.611111, 0.605263)
+texture = ExtResource("2_bpap5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_4g0my")

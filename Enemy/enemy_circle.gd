@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var movement_speed = 50.0
-@export var health = 60.0
+@export var movement_speed = 30.0
+@export var health = 100.0
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -10,7 +10,4 @@ func _physics_process(delta):
 	velocity = direction * movement_speed
 	move_and_slide()
 
-func _process(delta):
-	if player:
-		rotation = position.angle_to(player.global_position) - deg_to_rad(90) 
 		
