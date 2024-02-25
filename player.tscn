@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b737n7e1xqmfn"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_g1vl7"]
+[ext_resource type="Texture2D" uid="uid://cabjh804kw2bv" path="res://player test.png.png" id="2_20wox"]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_g1vl7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_20wox")
+
+[node name="Camera2D" type="Camera2D" parent="."]
