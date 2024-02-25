@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://b72s7nxurfs1m"]
 
-[ext_resource type="Script" path="res://Stopwatch/stopwatch.gd" id="1_60ca0"]
+[ext_resource type="Script" path="res://stopwatch.gd" id="1_60ca0"]
 
-[node name="Stopwatch" type="Label"]
+[node name="Stopwatch" type="Label" groups=["stopwatch"]]
 z_index = 1
 offset_right = 40.0
 offset_bottom = 23.0
