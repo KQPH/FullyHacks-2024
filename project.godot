@@ -23,10 +23,6 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 
-[dotnet]
-
-project/assembly_name="FullyHacks 2024"
-
 [input]
 
 up={

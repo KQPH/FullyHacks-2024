@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Player.gd" id="1_w1q8x"]
 [ext_resource type="Texture2D" uid="uid://cabjh804kw2bv" path="res://Player/player test.png.png" id="2_20wox"]
-
-[ext_resource type="Texture2D" uid="uid://dldyt2rucnxfq" path="res://Assets/Sprites/healthbar_border.png" id="3_7i47x"]
-[ext_resource type="Texture2D" uid="uid://bcp5che6d520w" path="res://Assets/Sprites/healthbar.png" id="4_bes4v"]
+[ext_resource type="PackedScene" uid="uid://cupn33xrhstgw" path="res://hurtbox.tscn" id="2_tvxio"]
+[ext_resource type="Texture2D" uid="uid://dldyt2rucnxfq" path="res://Sprites/healthbar_border.png" id="3_7i47x"]
+[ext_resource type="Texture2D" uid="uid://bcp5che6d520w" path="res://Sprites/healthbar.png" id="4_bes4v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qj8wm"]
 
