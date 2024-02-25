@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ubi1v5pgqiw0"]
+[gd_scene load_steps=8 format=3 uid="uid://ubi1v5pgqiw0"]
 
 [ext_resource type="Script" path="res://Enemy/enemy_circle.gd" id="1_bq2xp"]
 [ext_resource type="Texture2D" uid="uid://dbec8bipqjs42" path="res://Enemy/enemy_circle.png" id="2_u4dpn"]
+[ext_resource type="PackedScene" uid="uid://ctddwgep0glro" path="res://Utility/hurtbox.tscn" id="3_u7jd0"]
+[ext_resource type="PackedScene" uid="uid://cbqn5ahrfwb0a" path="res://Utility/hitbox.tscn" id="4_6pwgw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4pfxx"]
 radius = 18.4391
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqcln"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ivk0p"]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_bq2xp")
@@ -15,4 +21,26 @@ scale = Vector2(2.2, 2.112)
 texture = ExtResource("2_u4dpn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_4pfxx")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_u7jd0")]
+visible = false
+collision_layer = 4
+collision_mask = 4
+HurtBoxType = 1
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+scale = Vector2(2.2, 2.2)
+shape = SubResource("CircleShape2D_tqcln")
+
+[node name="Hitbox" parent="." instance=ExtResource("4_6pwgw")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+scale = Vector2(2.1, 2.1)
+shape = SubResource("CircleShape2D_ivk0p")
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

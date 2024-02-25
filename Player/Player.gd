@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var movement_speed = 130.0
 
-@onready var health = get_tree().get_first_node_in_group("healthbar")
+@onready var health = 100.0
 
 func _physics_process(_delta):
 	movement()
@@ -13,3 +13,8 @@ func movement():
 	var mov = Vector2(x_mov, y_mov)
 	velocity = mov.normalized()*movement_speed
 	move_and_slide()
+
+
+func _on_hurtbox_hurt(damage):
+	health -= damage
+	print(health)
