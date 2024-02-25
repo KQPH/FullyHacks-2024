@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsbxf1h4vge4b"]
+
+[ext_resource type="Script" path="res://Enemy/enemy_triangle.gd" id="1_04gsf"]
+[ext_resource type="Texture2D" uid="uid://surprtew2or1" path="res://Enemy/enemy_triangle.png" id="2_25n5p"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_04gsf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_25n5p")
