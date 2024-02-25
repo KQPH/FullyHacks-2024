@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://dav2c3plmq63x"]
+
+[ext_resource type="PackedScene" uid="uid://ubi1v5pgqiw0" path="res://Enemy/enemy_circle.tscn" id="1_l33r1"]
+[ext_resource type="Script" path="res://spawn_info.gd" id="2_pvull"]
+
+[sub_resource type="GDScript" id="GDScript_si1xf"]
+script/source = "extends Node2D
+
+
+@export var spawns:Array[SpawnInfo] = []
+
+@onready var player = get_tree().get_first_node_in_group(\"player\")
+
+var time = 0
+
+func _on_timer_timeout():
+	time += 1
+	var enemy_spawns = spawns
+	for spawn in enemy_spawns:
+		if time >= spawn.time_start and time <= spawn.time_end:
+			if spawn.spawn_delay_counter < spawn.enemy_spawn_delay:
+				spawn.spawn_delay_counter += 1
+			else:
+				spawn.spawn_delay_counter = 0
+				var new_enemy = load(str(spawn.enemy.resource_path))
+				var counter = 0
+				while counter < spawn.enemy_num:
+					var new_spawn = new_enemy.instantiate()
+					new_spawn.global_position = get_random_position()
+					add_child(new_spawn)
+					counter += 1
+
+func get_random_position():
+	var viewport = get_viewport_rect().size * randf_range(1.2, 1.4)
+	var t_left = Vector2(player.global_position.x - viewport.x/2, player.global_position.y - viewport.y/2)
+	var t_right = Vector2(player.global_position.x + viewport.x/2, player.global_position.y - viewport.y/2)
+	var b_left = Vector2(player.global_position.x - viewport.x/2, player.global_position.y + viewport.y/2)
+	var b_right = Vector2(player.global_position.x + viewport.x/2, player.global_position.y + viewport.y/2)
+	var side = [\"up\", \"down\", \"left\", \"right\"].pick_random()
+	var spawn1 = Vector2.ZERO
+	var spawn2 = Vector2.ZERO
+	match side:
+		\"up\":
+			spawn1 = t_left
+			spawn2 = t_right
+		\"down\":
+			spawn1 = b_left
+			spawn2 = b_right
+		\"left\":
+			spawn1 = t_left
+			spawn2 = b_left
+		\"right\":
+			spawn1 = t_right
+			spawn2 = b_right
+	var x = randf_range(spawn1.x, spawn2.x)
+	var y = randf_range(spawn1.y, spawn2.y)
+	return Vector2(x, y)
+"
+
+[sub_resource type="Resource" id="Resource_6y44u"]
+script = ExtResource("2_pvull")
+time_start = 0
+time_end = 60
+enemy = ExtResource("1_l33r1")
+enemy_num = 1
+enemy_spawn_delay = 1
+
+[node name="EnemySpawner" type="Node2D"]
+script = SubResource("GDScript_si1xf")
+spawns = Array[ExtResource("2_pvull")]([SubResource("Resource_6y44u")])
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

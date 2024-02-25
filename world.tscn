@@ -1,21 +1,74 @@
-[gd_scene load_steps=5 format=3 uid="uid://ejeomhyl0shd"]
+[gd_scene load_steps=14 format=3 uid="uid://ejeomhyl0shd"]
 
-[ext_resource type="Texture2D" uid="uid://mucanyb3p48m" path="res://grid bg test.png.png" id="1_8dwpe"]
+[ext_resource type="Script" path="res://EnemySpawner.gd" id="1_4p22n"]
+[ext_resource type="Texture2D" uid="uid://c3mchruglalbw" path="res://bg_1_1.png" id="2_76hru"]
 [ext_resource type="PackedScene" uid="uid://b737n7e1xqmfn" path="res://Player/player.tscn" id="2_u6sdl"]
 [ext_resource type="PackedScene" uid="uid://ubi1v5pgqiw0" path="res://Enemy/enemy_circle.tscn" id="3_tiko3"]
 [ext_resource type="PackedScene" uid="uid://bsbxf1h4vge4b" path="res://Enemy/enemy_triangle.tscn" id="4_8l771"]
+[ext_resource type="PackedScene" path="res://enemy_spawner.tscn" id="4_xya2k"]
+[ext_resource type="Script" path="res://spawn_info.gd" id="6_5u46s"]
+[ext_resource type="AudioStream" uid="uid://btrgoa3135y8f" path="res://Assets/Music/OutThere.ogg" id="8_ie10r"]
+[ext_resource type="PackedScene" uid="uid://b72s7nxurfs1m" path="res://Stopwatch/stopwatch.tscn" id="9_vid2e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ignsy"]
+
+[sub_resource type="Resource" id="Resource_ww7a7"]
+script = ExtResource("6_5u46s")
+time_start = 0
+time_end = 5
+enemy = ExtResource("3_tiko3")
+enemy_num = 1
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_ble0q"]
+script = ExtResource("6_5u46s")
+time_start = 10
+time_end = 60
+enemy = ExtResource("4_8l771")
+enemy_num = 2
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_amrm8"]
+script = ExtResource("6_5u46s")
+time_start = 10
+time_end = 60
+enemy = ExtResource("3_tiko3")
+enemy_num = 1
+enemy_spawn_delay = 1
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_4p22n")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 2
 texture_repeat = 2
-texture = ExtResource("1_8dwpe")
+texture = ExtResource("2_76hru")
 region_enabled = true
 region_rect = Rect2(-4000, 4000, 4000, 4000)
 
-[node name="EnemyCircle" parent="." groups=["enemy"] instance=ExtResource("3_tiko3")]
+[node name="Player" parent="." instance=ExtResource("2_u6sdl")]
 
-[node name="EnemyTriangle" parent="." groups=["enemy"] instance=ExtResource("4_8l771")]
+[node name="CollisionShape2D" parent="Player" index="3"]
+visible = false
+shape = SubResource("CircleShape2D_ignsy")
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("2_u6sdl")]
+[node name="Stopwatch" parent="Player" groups=["stopwatch"] instance=ExtResource("9_vid2e")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.6667
+offset_top = -118.0
+offset_right = 26.3333
+offset_bottom = -95.0
+grow_horizontal = 2
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_xya2k")]
+spawns = Array[ExtResource("6_5u46s")]([SubResource("Resource_ww7a7"), SubResource("Resource_ble0q"), SubResource("Resource_amrm8")])
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ie10r")
+autoplay = true
+
+[editable path="Player"]
+[editable path="Player/Hurtbox"]
+[editable path="EnemySpawner"]

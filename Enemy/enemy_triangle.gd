@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var movement_speed = 70.0
 @export var health = 60.0
+@export var damage = 5.0
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -14,3 +15,6 @@ func _process(delta):
 	if player:
 		rotation = position.angle_to(player.global_position) - deg_to_rad(90) 
 		
+
+func _on_hurtbox_hurt(damage):
+	health -= damage

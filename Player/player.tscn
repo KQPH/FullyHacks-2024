@@ -1,18 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://b737n7e1xqmfn"]
+[gd_scene load_steps=8 format=3 uid="uid://b737n7e1xqmfn"]
 
-[ext_resource type="Script" path="res://Player/Player.gd" id="1_g1vl7"]
+[ext_resource type="Script" path="res://Player.gd" id="1_w1q8x"]
 [ext_resource type="Texture2D" uid="uid://cabjh804kw2bv" path="res://Player/player test.png.png" id="2_20wox"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_st21s"]
+[ext_resource type="Texture2D" uid="uid://dldyt2rucnxfq" path="res://Assets/Sprites/healthbar_border.png" id="3_7i47x"]
+[ext_resource type="Texture2D" uid="uid://bcp5che6d520w" path="res://Assets/Sprites/healthbar.png" id="4_bes4v"]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qj8wm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgg6w"]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(1.5, 1.5)
-script = ExtResource("1_g1vl7")
+script = ExtResource("1_w1q8x")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_tvxio")]
+collision_layer = 2
+collision_mask = 2
+HurtBoxType = 1
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CircleShape2D_qj8wm")
+
+[node name="disableTimer" parent="Hurtbox" index="1"]
+wait_time = 0.6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_20wox")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_st21s")
+shape = SubResource("CircleShape2D_vgg6w")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Healthbar" type="TextureProgressBar" parent="GUI"]
+unique_name_in_owner = true
+self_modulate = Color(0.773395, 0.0990666, 0.245392, 0.85098)
+layout_mode = 0
+offset_left = -18.0
+offset_top = 15.0
+offset_right = 102.0
+offset_bottom = 45.0
+scale = Vector2(0.3, 0.2)
+value = 50.0
+texture_over = ExtResource("3_7i47x")
+texture_progress = ExtResource("4_bes4v")
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+
+[editable path="Hurtbox"]
