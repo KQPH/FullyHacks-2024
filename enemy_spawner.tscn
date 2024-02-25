@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://nrscsg5fl6ka"]
+[gd_scene load_steps=5 format=3 uid="uid://dav2c3plmq63x"]
 
 [ext_resource type="PackedScene" uid="uid://ubi1v5pgqiw0" path="res://Enemy/enemy_circle.tscn" id="1_l33r1"]
 [ext_resource type="Script" path="res://spawn_info.gd" id="2_pvull"]

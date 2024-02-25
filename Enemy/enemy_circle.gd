@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-@export var movement_speed = 40.0
+@export var movement_speed = 35.0
 @export var health = 100.0
+@export var damage = 10.0
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -10,4 +11,7 @@ func _physics_process(_delta):
 	velocity = direction * movement_speed
 	move_and_slide()
 
-		
+
+func _on_hurtbox_hurt(damage):
+	health -= damage
+	

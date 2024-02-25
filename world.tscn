@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://ejeomhyl0shd"]
+[gd_scene load_steps=14 format=3 uid="uid://ejeomhyl0shd"]
 
 [ext_resource type="Script" path="res://EnemySpawner.gd" id="1_4p22n"]
 [ext_resource type="Texture2D" uid="uid://c3mchruglalbw" path="res://bg_1_1.png" id="2_76hru"]
 [ext_resource type="PackedScene" uid="uid://b737n7e1xqmfn" path="res://Player/player.tscn" id="2_u6sdl"]
 [ext_resource type="PackedScene" uid="uid://ubi1v5pgqiw0" path="res://Enemy/enemy_circle.tscn" id="3_tiko3"]
 [ext_resource type="PackedScene" uid="uid://bsbxf1h4vge4b" path="res://Enemy/enemy_triangle.tscn" id="4_8l771"]
-[ext_resource type="PackedScene" uid="uid://nrscsg5fl6ka" path="res://enemy_spawner.tscn" id="4_xya2k"]
+[ext_resource type="PackedScene" uid="uid://dav2c3plmq63x" path="res://enemy_spawner.tscn" id="4_xya2k"]
 [ext_resource type="Script" path="res://spawn_info.gd" id="6_5u46s"]
 [ext_resource type="AudioStream" uid="uid://btrgoa3135y8f" path="res://Music/OutThere.ogg" id="8_ie10r"]
 [ext_resource type="PackedScene" uid="uid://b72s7nxurfs1m" path="res://Stopwatch/stopwatch.tscn" id="9_vid2e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ignsy"]
 
 [sub_resource type="Resource" id="Resource_ww7a7"]
 script = ExtResource("6_5u46s")
@@ -44,7 +46,11 @@ texture = ExtResource("2_76hru")
 region_enabled = true
 region_rect = Rect2(-4000, 4000, 4000, 4000)
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("2_u6sdl")]
+[node name="Player" parent="." instance=ExtResource("2_u6sdl")]
+
+[node name="CollisionShape2D" parent="Player" index="3"]
+visible = false
+shape = SubResource("CircleShape2D_ignsy")
 
 [node name="Stopwatch" parent="Player" groups=["stopwatch"] instance=ExtResource("9_vid2e")]
 anchors_preset = 5
@@ -62,3 +68,7 @@ spawns = Array[ExtResource("6_5u46s")]([SubResource("Resource_ww7a7"), SubResour
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_ie10r")
 autoplay = true
+
+[editable path="Player"]
+[editable path="Player/Hurtbox"]
+[editable path="EnemySpawner"]

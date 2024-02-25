@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
 var movement_speed = 130.0
-
-@onready var health = 100
+var health = 100.0
 
 func _physics_process(_delta):
 	movement()
@@ -14,7 +13,7 @@ func movement():
 	velocity = mov.normalized()*movement_speed
 	move_and_slide()
 
-
 func _on_hurtbox_hurt(damage):
 	health -= damage
-	print("hurt")
+	print(health)
+	
