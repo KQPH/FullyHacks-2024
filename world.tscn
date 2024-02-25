@@ -1,11 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://ejeomhyl0shd"]
+[gd_scene load_steps=11 format=3 uid="uid://ejeomhyl0shd"]
 
+[ext_resource type="Script" path="res://EnemySpawner.gd" id="1_4p22n"]
 [ext_resource type="Texture2D" uid="uid://mucanyb3p48m" path="res://grid bg test.png.png" id="1_8dwpe"]
 [ext_resource type="PackedScene" uid="uid://b737n7e1xqmfn" path="res://Player/player.tscn" id="2_u6sdl"]
 [ext_resource type="PackedScene" uid="uid://ubi1v5pgqiw0" path="res://Enemy/enemy_circle.tscn" id="3_tiko3"]
 [ext_resource type="PackedScene" uid="uid://bsbxf1h4vge4b" path="res://Enemy/enemy_triangle.tscn" id="4_8l771"]
+[ext_resource type="PackedScene" uid="uid://nrscsg5fl6ka" path="res://enemy_spawner.tscn" id="4_xya2k"]
+[ext_resource type="Script" path="res://spawn_info.gd" id="6_5u46s"]
+
+[sub_resource type="Resource" id="Resource_ww7a7"]
+script = ExtResource("6_5u46s")
+time_start = 0
+time_end = 5
+enemy = ExtResource("3_tiko3")
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_ble0q"]
+script = ExtResource("6_5u46s")
+time_start = 10
+time_end = 60
+enemy = ExtResource("4_8l771")
+enemy_num = 3
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_amrm8"]
+script = ExtResource("6_5u46s")
+time_start = 10
+time_end = 60
+enemy = ExtResource("3_tiko3")
+enemy_num = 2
+enemy_spawn_delay = 1
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_4p22n")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 2
@@ -14,8 +42,7 @@ texture = ExtResource("1_8dwpe")
 region_enabled = true
 region_rect = Rect2(-4000, 4000, 4000, 4000)
 
-[node name="EnemyCircle" parent="." groups=["enemy"] instance=ExtResource("3_tiko3")]
-
-[node name="EnemyTriangle" parent="." groups=["enemy"] instance=ExtResource("4_8l771")]
-
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_u6sdl")]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_xya2k")]
+spawns = Array[ExtResource("6_5u46s")]([SubResource("Resource_ww7a7"), SubResource("Resource_ble0q"), SubResource("Resource_amrm8")])
