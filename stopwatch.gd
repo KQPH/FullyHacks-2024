@@ -1,6 +1,6 @@
 extends Label
 
-var time_elasped := 0.0
+@export var time_elasped := 0.0
 
 @onready var stopwatch := get_tree().get_first_node_in_group("stopwatch")
 
@@ -15,3 +15,7 @@ func _format_seconds(time: float):
 	var milliseconds := fmod(time, 1.0) * 100.0
 	
 	return "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
+
+
+func _on_tree_exiting():
+	$spawn_info.add_child($stopwatch.clone()) # Replace with function body.
