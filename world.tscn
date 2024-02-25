@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ejeomhyl0shd"]
+
+[ext_resource type="Texture2D" uid="uid://mucanyb3p48m" path="res://grid bg test.png.png" id="1_8dwpe"]
+[ext_resource type="PackedScene" uid="uid://b737n7e1xqmfn" path="res://player.tscn" id="2_u6sdl"]
+
+[node name="World" type="Node2D"]
+
+[node name="Node2D" type="Sprite2D" parent="."]
+texture_filter = 2
+texture_repeat = 2
+texture = ExtResource("1_8dwpe")
+region_enabled = true
+region_rect = Rect2(-4000, 4000, 4000, 4000)
+
+[node name="Player" parent="." instance=ExtResource("2_u6sdl")]
