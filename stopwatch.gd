@@ -16,6 +16,3 @@ func _format_seconds(time: float):
 	
 	return "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
 
-
-func _on_tree_exiting():
-	$spawn_info.add_child($stopwatch.clone()) # Replace with function body.
