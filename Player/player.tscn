@@ -10,7 +10,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kn22f"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_g1vl7")
 
