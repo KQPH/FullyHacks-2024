@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var movement_speed = 130.0
 
-@onready var health = get_node("$Healthbar")
+@onready var health = get_tree().get_first_node_in_group("healthbar")
 
 func _physics_process(_delta):
 	movement()
