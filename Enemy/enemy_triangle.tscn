@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://surprtew2or1" path="res://Enemy/enemy_triangle.png" id="2_bpap5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4g0my"]
-radius = 4.0
-height = 10.0
+radius = 5.0
+height = 18.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_tblky")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.38419e-07, -2)
-scale = Vector2(0.611111, 0.605263)
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(1.02778, 1.03947)
 texture = ExtResource("2_bpap5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_4g0my")
