@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 var movement_speed = 130.0
 
+@onready var health = get_node("$Healthbar")
+
 func _physics_process(_delta):
 	movement()
 	
