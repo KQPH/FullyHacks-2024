@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ejeomhyl0shd"]
+
+[ext_resource type="Texture2D" uid="uid://mucanyb3p48m" path="res://grid bg test.png.png" id="1_8dwpe"]
+[ext_resource type="Script" path="res://Player.gd" id="2_38iuc"]
+[ext_resource type="Texture2D" uid="uid://cabjh804kw2bv" path="res://player test.png.png" id="2_mq3hm"]
+
+[node name="World" type="Node2D"]
+
+[node name="Node2D" type="Sprite2D" parent="."]
+texture_filter = 2
+texture_repeat = 2
+texture = ExtResource("1_8dwpe")
+region_enabled = true
+region_rect = Rect2(-4000, 4000, 4000, 4000)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("2_38iuc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_mq3hm")
