@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b737n7e1xqmfn"]
+[gd_scene load_steps=9 format=3 uid="uid://b737n7e1xqmfn"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_g1vl7"]
 [ext_resource type="Texture2D" uid="uid://cabjh804kw2bv" path="res://Player/player test.png.png" id="2_20wox"]
@@ -10,8 +10,13 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kn22f"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xh12p"]
+radius = 245.407
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(1.5, 1.5)
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_g1vl7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -51,6 +56,24 @@ HurtBoxType = 1
 position = Vector2(0, 0.2)
 scale = Vector2(1.2, 1.2)
 shape = SubResource("CircleShape2D_kn22f")
+
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="LaserBulletTimer" type="Timer" parent="Attack"]
+unique_name_in_owner = true
+wait_time = 1.5
+
+[node name="LaserBulletAttackTimer" type="Timer" parent="Attack/LaserBulletTimer"]
+unique_name_in_owner = true
+wait_time = 0.075
+
+[node name="EnemyDetectionArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
+shape = SubResource("CircleShape2D_xh12p")
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 

@@ -42,7 +42,7 @@ func attack():
 
 func _on_laser_bullet_timer_timeout():
 	laserBullet_ammo += laserBullet_baseammo
-	laserBulletAttackTimer
+	laserBulletAttackTimer.start()
 
 func _on_laser_bullet_attack_timer_timeout():
 	if laserBullet_ammo > 0:
@@ -58,7 +58,10 @@ func _on_laser_bullet_attack_timer_timeout():
 			laserBulletAttackTimer.stop()
 		
 func get_random_target():
-	if enemy_close.size()
+	if enemy_close.size() > 0:
+		return enemy_close.pick_random().global_position
+	else:
+		return Vector2.UP
 
 func _on_enemy_detection_area_body_entered(body):
 	if not enemy_close.has(body):
