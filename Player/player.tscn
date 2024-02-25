@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b737n7e1xqmfn"]
+[gd_scene load_steps=6 format=3 uid="uid://b737n7e1xqmfn"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_g1vl7"]
 [ext_resource type="Texture2D" uid="uid://cabjh804kw2bv" path="res://Player/player test.png.png" id="2_20wox"]
-[ext_resource type="Texture2D" uid="uid://dldyt2rucnxfq" path="res://Assets/Sprites/healthbar_border.png" id="3_7i47x"]
-[ext_resource type="Texture2D" uid="uid://bcp5che6d520w" path="res://Assets/Sprites/healthbar.png" id="4_bes4v"]
 [ext_resource type="PackedScene" uid="uid://ctddwgep0glro" path="res://Utility/hurtbox.tscn" id="5_oqmbr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n26bb"]
@@ -22,25 +20,22 @@ texture = ExtResource("2_20wox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_n26bb")
+disabled = true
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 17.0
+offset_bottom = 39.0
+rotation = 1.5708
+step = 10.0
+show_percentage = false
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Healthbar" type="TextureProgressBar" parent="GUI"]
-unique_name_in_owner = true
-self_modulate = Color(0.773395, 0.0990666, 0.245392, 0.85098)
-layout_mode = 0
-offset_left = -18.0
-offset_top = 15.0
-offset_right = 102.0
-offset_bottom = 45.0
-scale = Vector2(0.3, 0.2)
-value = 50.0
-texture_over = ExtResource("3_7i47x")
-texture_progress = ExtResource("4_bes4v")
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_oqmbr")]
 collision_layer = 2

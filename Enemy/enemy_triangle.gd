@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var movement_speed = 70.0
-@export var health = 60.0
+@export var health = 60
 
 @onready var player = get_tree().get_first_node_in_group("player")
 

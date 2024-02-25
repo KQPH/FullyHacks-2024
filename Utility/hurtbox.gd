@@ -24,4 +24,5 @@ func _on_area_entered(area):
 
 
 func _on_disable_timer_timeout():
-	pass # Replace with function body.
+	collision.call_deferred("set", "disabled", false)
+	queue_free()
