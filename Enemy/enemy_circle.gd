@@ -10,4 +10,7 @@ func _physics_process(_delta):
 	velocity = direction * movement_speed
 	move_and_slide()
 
-
+func _on_hurtbox_hurt(damage):
+	# health -= damage
+	print("enemy hit")
+	queue_free()

@@ -14,3 +14,8 @@ func _process(_delta):
 	if player:
 		rotation = position.angle_to(player.global_position) - deg_to_rad(90) 
 		
+
+func _on_hurtbox_hurt(damage):
+	# health -= damage
+	print("enemy hit")
+	queue_free()

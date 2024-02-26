@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://nrscsg5fl6ka" path="res://enemy_spawner.tscn" id="4_xya2k"]
 [ext_resource type="Script" path="res://spawn_info.gd" id="6_5u46s"]
 [ext_resource type="AudioStream" uid="uid://btrgoa3135y8f" path="res://Assets/Music/OutThere.ogg" id="8_ie10r"]
-[ext_resource type="PackedScene" uid="uid://b72s7nxurfs1m" path="res://stopwatch.tscn" id="9_vid2e"]
+[ext_resource type="PackedScene" path="res://stopwatch.tscn" id="9_vid2e"]
 
 [sub_resource type="Resource" id="Resource_ww7a7"]
 script = ExtResource("6_5u46s")
@@ -16,7 +16,7 @@ time_start = 0
 time_end = 5
 enemy = ExtResource("3_tiko3")
 enemy_num = 1
-enemy_spawn_delay = 1
+enemy_spawn_delay = 2
 
 [sub_resource type="Resource" id="Resource_ble0q"]
 script = ExtResource("6_5u46s")
@@ -24,7 +24,7 @@ time_start = 10
 time_end = 60
 enemy = ExtResource("4_8l771")
 enemy_num = 2
-enemy_spawn_delay = 1
+enemy_spawn_delay = 2
 
 [sub_resource type="Resource" id="Resource_amrm8"]
 script = ExtResource("6_5u46s")
@@ -32,19 +32,21 @@ time_start = 10
 time_end = 60
 enemy = ExtResource("3_tiko3")
 enemy_num = 1
-enemy_spawn_delay = 1
+enemy_spawn_delay = 2
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_4p22n")
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -2
+z_as_relative = false
 texture_filter = 2
 texture_repeat = 2
 texture = ExtResource("2_76hru")
 region_enabled = true
 region_rect = Rect2(-4000, 4000, 4000, 4000)
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("2_u6sdl")]
+[node name="Player" parent="." instance=ExtResource("2_u6sdl")]
 
 [node name="Stopwatch" parent="Player" instance=ExtResource("9_vid2e")]
 anchors_preset = 5
@@ -63,6 +65,7 @@ spawns = Array[ExtResource("6_5u46s")]([SubResource("Resource_ww7a7"), SubResour
 stream = ExtResource("8_ie10r")
 autoplay = true
 
+[connection signal="tree_exiting" from="Player/Stopwatch" to="Player/Stopwatch" method="_on_tree_exiting"]
+
 [editable path="Player"]
 [editable path="Player/Hurtbox"]
-[connection signal="tree_exiting" from="Player/Stopwatch" to="Player/Stopwatch" method="_on_tree_exiting"]

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var movement_speed = 130.0
+var movement_speed = 90.0
 
 @onready var health = 100.0
 
@@ -13,6 +13,10 @@ var laserBullet_ammo = 0
 var laserBullet_baseammo = 1
 var laserBullet_attackspeed = 1.5
 var laserBullet_level = 1
+
+var pos_x := 0.0
+var pos_y := 0.0
+
 
 var enemy_close = []
 
@@ -39,6 +43,7 @@ func attack():
 		laserBulletTimer.wait_time = laserBullet_attackspeed
 		if laserBulletTimer.is_stopped():
 			laserBulletTimer.start()
+			print(2)
 
 func _on_laser_bullet_timer_timeout():
 	laserBullet_ammo += laserBullet_baseammo
@@ -47,7 +52,7 @@ func _on_laser_bullet_timer_timeout():
 func _on_laser_bullet_attack_timer_timeout():
 	if laserBullet_ammo > 0:
 		var laserBullet_attack = laserBullet.instantiate()
-		laserBullet_attack.position = position
+		laserBullet_attack.position = Vector2.ZERO
 		laserBullet_attack.target = get_random_target()
 		laserBullet_attack.level = laserBullet_level
 		add_child(laserBullet_attack)
@@ -56,17 +61,18 @@ func _on_laser_bullet_attack_timer_timeout():
 			laserBulletAttackTimer.start()
 		else:
 			laserBulletAttackTimer.stop()
-		
+			
 func get_random_target():
 	if enemy_close.size() > 0:
 		return enemy_close.pick_random().global_position
 	else:
 		return Vector2.UP
+		
+
 
 func _on_enemy_detection_area_body_entered(body):
 	if not enemy_close.has(body):
 		enemy_close.append(body)
-
 
 func _on_enemy_detection_area_body_exited(body):
 	if enemy_close.has(body):
